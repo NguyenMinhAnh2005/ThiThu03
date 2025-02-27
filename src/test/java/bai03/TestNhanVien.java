@@ -42,36 +42,36 @@ public class TestNhanVien {
         Assertions.assertEquals(exp, act);
     }
 
-    // Xóa NV với mã rỗng ""
+    // Kiểm tra ngoại lệ khi mã không hợp lệ
     @Test
     public void testXoaNVVoiMaRong() {
-        String exp = "Mã không hợp lệ";
-        String act = nhanVienService.xoaNV("");
-        Assertions.assertEquals(exp, act);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            nhanVienService.xoaNV("");
+        });
     }
 
     //  Xóa NV với mã null
     @Test
     public void testXoaNVVoiMaNull() {
-        String exp = "Mã không hợp lệ";
-        String act = nhanVienService.xoaNV(null);
-        Assertions.assertEquals(exp, act);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            nhanVienService.xoaNV(null);
+        });
     }
 
     //  Xóa NV có mã dài
     @Test
     public void testXoaNVVoiMaRatDai() {
-        String exp = "Mã không hợp lệ";
-        String act = nhanVienService.xoaNV("NV01234567890123456789");
-        Assertions.assertEquals(exp, act);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            nhanVienService.xoaNV("NV01234567890123456789");
+        });
     }
 
     //  Xóa NV có ký tự đặc biệt trong mã
     @Test
     public void testXoaNVVoiKyTuDacBiet() {
-        String exp = "Mã không hợp lệ";
-        String act = nhanVienService.xoaNV("NV@#123");
-        Assertions.assertEquals(exp, act);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            nhanVienService.xoaNV("NV@#123");
+        });
     }
 
     //  Xóa NV có tên trùng nhưng khác mã
@@ -86,9 +86,9 @@ public class TestNhanVien {
     //  Xóa NV có mã viết hoa/thường khác nhau
     @Test
     public void testXoaNVPhanBietHoaThuong() {
-        String exp = "Mã không hợp lệ";
-        String act = nhanVienService.xoaNV("nv01"); // Thử với chữ thường
-        Assertions.assertEquals(exp, act);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            nhanVienService.xoaNV("nv01"); // Chữ thường không hợp lệ
+        });
     }
 
     //  Gây lỗi ngoại lệ khi truyền mã null

@@ -19,7 +19,7 @@ public class NhanVienService {
     // ✅ Xóa nhân viên theo mã NV
     public String xoaNV(String maNV) {
         if (maNV == null || maNV.isEmpty() || maNV.length() > 10 || !maNV.matches("NV\\d+")) {
-            throw new IllegalArgumentException("Mã nhân viên không hợp lệ");
+            throw new IllegalArgumentException("Mã không hợp lệ");
         }
         if (listNhanVien.isEmpty()) {
             return "Không có nhân viên để xóa";
@@ -32,4 +32,5 @@ public class NhanVienService {
         }
         return "Mã NV không tồn tại";
     }
+
 }
